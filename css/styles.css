@@ -35,10 +35,16 @@ nav .brand-logo {
   font-size: 24px;
   margin-left: 100px;
 }
-.collection .collection-item.avatar a {
-  color: blue;
-}
 
+.collection .collection-item.avatar a {
+  color: white;
+}
+/*
+
+.collection .collection-item.avatar.accent-3 a {
+  color: white;
+}
+*/
 .container {
   max-width: none;
   width: 100%;
@@ -65,6 +71,11 @@ nav .brand-logo {
 
 footer {
   font-size: 20px;
+
+}
+
+.page-footer {
+  color: #4d2f84;
 }
 
 #chimera, #chimeraFav {
