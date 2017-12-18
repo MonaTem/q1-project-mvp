@@ -1,10 +1,10 @@
-/*  $(document).ready(function() {
+  $(document).ready(function() {
 
     $(".button-collapse").sideNav();
 
   });
 
-  */
+
 
 
 var monsterFave = localStorage.getItem("monster");
