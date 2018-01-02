@@ -1,13 +1,11 @@
- /*  $(document).ready(function() {
+  $(document).ready(function() {
 
     $(".button-collapse").sideNav();
 
   });
 
-  */
 
-
-if (ON_INDEX) {
+if (ON_INDEX || ON_INDEX2) {
 
   checkLocalStorage();
 
@@ -15,13 +13,10 @@ if (ON_INDEX) {
 
      var monsterName = document.querySelector(".card-title").textContent;
 
-     if (monsterName === MONSTERNAME) {
+     let btn = document.getElementsByClassName("monsters");
 
-      let btns = document.getElementsByClassName("monsters");
 
-      for (j=0; j<2; j++) {
-
-      btns[j].addEventListener("click", function() {
+     btn.addEventListener("click", function() {
 
           var monsterFavorites = checkLocalStorage();
           removeLocalStorage();
@@ -29,17 +24,15 @@ if (ON_INDEX) {
           storeArray(listOfMonsters);
 
        });
-      }
-     }
 }
 
 function checkLocalStorage() {
+  var monsterFavs = [];
   if(!localStorage.getItem('monsterInfo')) {
-    if (!ON_INDEX) {
+    // if (!ON_INDEX || !ON_INDEX2) {
      populateStorage();
-     }
+     // }
 } else {
-    var monsterFavs = [];
     monsterFavs = checkMonsterFaves();
 
 }
@@ -50,7 +43,7 @@ function populateStorage() {
 
 var monsterArray = [];
 
-monsterArray = document.getElementsByClassName('card-title');
+monsterArray = document.getElementsByClassName('title');
 
 var myObj = {};
 var monsterList = [];
@@ -74,7 +67,7 @@ function checkMonsterFaves() {
 
 monsterFaves = JSON.parse(localStorage.getItem('monsterInfo'));
 
-for (var i=0; i< monsterFaves.length; i++) {
+for (var i=0; i < monsterFaves.length; i++) {
 
   if (monsterFaves[i].fave && ON_INDEX) {
     favIconIndex(monsterFaves[i]);
