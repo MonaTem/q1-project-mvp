@@ -13,10 +13,11 @@ if (ON_INDEX || ON_INDEX2) {
 
      var monsterName = document.querySelector(".card-title").textContent;
 
-     let btn = document.getElementsByClassName("monsters");
+     let btns = document.getElementsByClassName("monsters");
 
+     for (i = 0; i < 2; i++) {
 
-     btn.addEventListener("click", function() {
+       btn[i].addEventListener("click", function() {
 
           var monsterFavorites = checkLocalStorage();
           removeLocalStorage();
@@ -24,16 +25,17 @@ if (ON_INDEX || ON_INDEX2) {
           storeArray(listOfMonsters);
 
        });
+     }
 }
 
 function checkLocalStorage() {
   var monsterFavs = [];
-  if(!localStorage.getItem('monsterInfo')) {
-    // if (!ON_INDEX || !ON_INDEX2) {
+  if (!localStorage.getItem('monsterInfo') && ON_INDEX) {
      populateStorage();
-     // }
-} else {
-    monsterFavs = checkMonsterFaves();
+  } else if (!localStorage.getItem('monster2Info') && ON_INDEX2) {
+        populateStorage();
+        } else {
+          monsterFavs = checkMonsterFaves();
 
 }
 return monsterFavs;
@@ -59,6 +61,7 @@ var monsterList = [];
 
 function storeArray(array) {
 
+
 localStorage.setItem("monsterInfo", JSON.stringify(array));
 
 }
@@ -67,13 +70,15 @@ function checkMonsterFaves() {
 
 monsterFaves = JSON.parse(localStorage.getItem('monsterInfo'));
 
+monsterFaves2 = JSON.parse(localStorage.getItem('monster2Info'));
+
 for (var i=0; i < monsterFaves.length; i++) {
 
-  if (monsterFaves[i].fave && ON_INDEX) {
+  if (monsterFaves[i].fave && (ON_INDEX || ON_INDEX2)) {
     favIconIndex(monsterFaves[i]);
   }
 
-  if (!ON_INDEX) {
+  if (!ON_INDEX && !ON_INDEX2) {
 
     monsterFaves[i].fave = favesMonsterPages(monsterFaves[i].fave);
 
